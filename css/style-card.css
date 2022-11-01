@@ -28,16 +28,44 @@ body{
   justify-content: center;
   align-items: center;
   height: 100vh;
+  perspective: 800px;
 }
 
-.card{
-  background-color: white;
+.card {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 1.5s;
+  transform-style: preserve-3d;
+}
+
+.card:hover {
+  cursor: pointer;
+  transform: rotateY(180deg);
+}
+
+.front-card,
+.back-card{
   width: 326px;
+  height: 450px;
+  background-color: white;
+  position: absolute;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.144);
+  backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
+.back-card {
+  background: linear-gradient(41deg, rgba(106,111,129,1) 36%, rgba(25,162,174,1) 78%);
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .card-header{
   width: 100%;
   display: block;
@@ -55,6 +83,14 @@ body{
   border-radius: 50%;
   margin-top: calc(-48px - 5px);
   background-color: #fff;
+  width: 150px;
+  height: 150px;
+}
+
+.back-card img {
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
 }
 
 .card-body-tittle{
@@ -86,4 +122,11 @@ body{
 .card-footer-social p{
   letter-spacing: 2px;
   color: var(--dark-blue);
+}
+
+.app-info {
+  position: absolute;
+  bottom: 30px;
+  text-align: center;
+  font-size: 16px;
 }
